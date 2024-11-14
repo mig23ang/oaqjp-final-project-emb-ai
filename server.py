@@ -10,6 +10,9 @@ def detect_emotion():
     text_to_analyze = data.get("text", "")
     result = emotion_detector(text_to_analyze)
 
+    if result["dominant_emotion"] is None:
+        return jsonify({"error": "¡Texto inválido! ¡Por favor, inténtalo de nuevo!"}), 400
+
     response = {
         "anger": result["anger"],
         "disgust": result["disgust"],
